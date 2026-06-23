@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KBC001 管理者認証システム</title>
+
+<style>
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:url("IMG_0599.jpeg") center center/cover no-repeat;
+    font-family:sans-serif;
+    color:white;
+    text-align:center;
+}
+
+.box{
+    padding-top:120px;
+    width:90%;
+    max-width:600px;
+    margin:auto;
+}
+
+h1{
+    color:#ff0000;
+    font-size:70px;
+    margin-bottom:10px;
+    text-shadow:0 0 20px red;
+}
+
+h2{
+    color:#ff0000;
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+input{
+    width:80%;
+    max-width:500px;
+    padding:20px;
+    font-size:32px;
+    text-align:center;
+    border:3px solid red;
+    border-radius:15px;
+    background:black;
+    color:white;
+    box-shadow:0 0 20px red;
+}
+
+button{
+    margin-top:30px;
+    padding:20px 60px;
+    font-size:32px;
+    color:red;
+    background:black;
+    border:3px solid red;
+    border-radius:15px;
+    box-shadow:0 0 20px red;
+}
+
+#result{
+    margin-top:40px;
+    font-size:32px;
+    background:rgba(0,0,0,0.7);
+    padding:25px;
+    border-radius:15px;
+}
+
+#fail{
+    margin-top:20px;
+    font-size:24px;
+}
+
+.notice{
+    margin-top:50px;
+    color:red;
+    border:1px solid #555;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(0,0,0,0.7);
+}
+
+@keyframes flash{
+
+0%{
+filter:none;
+}
+
+50%{
+filter:brightness(2) sepia(1) hue-rotate(-30deg);
+}
+
+100%{
+filter:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>KBC001</h1>
+
+<h2>管理者認証システム</h2>
+
+<p>管理者コードを入力せよ</p>
+
+<input type="password" id="code">
+
+<br>
+
+<button onclick="checkCode()">認証</button>
+
+<div id="result">
+認証待機中...
+</div>
+
+<div id="fail">
+失敗回数：0 / 3
+</div>
+
+<div class="notice">
+【注意】<br>
+認証に3回失敗すると、不正アクセス検知が発動します。
+</div>
+
+</div>
+
+<script>
+
+let failCount = 0;
+
+function checkCode(){
+
+let code = document.getElementById("code").value;
+
+if(code === "KBC001"){
+
+document.body.style.animation = "flash 0.3s 8";
+
+document.getElementById("result").innerHTML =
+"<span style='color:#00ff00'>" +
+"■■ SYSTEM UPDATE ■■<br><br>" +
+"旧管理者：<br>ミスターK<br><br>" +
+"新管理者：<br>さな<br><br>" +
+"変更完了" +
+"</span>";
+
+let msg1 = new SpeechSynthesisUtterance("K B C ゼロゼロワン 認証完了");
+msg1.lang = "ja-JP";
+
+let msg2 = new SpeechSynthesisUtterance("管理者権限を確認");
+msg2.lang = "ja-JP";
+
+let msg3 = new SpeechSynthesisUtterance("旧管理者 ミスターケー");
+msg3.lang = "ja-JP";
+
+let msg4 = new SpeechSynthesisUtterance("新管理者 さな");
+msg4.lang = "ja-JP";
+
+let msg5 = new SpeechSynthesisUtterance("管理者が変更されました");
+msg5.lang = "ja-JP";
+
+speechSynthesis.speak(msg1);
+
+setTimeout(()=>{
+speechSynthesis.speak(msg2);
+},2000);
+
+setTimeout(()=>{
+speechSynthesis.speak(msg3);
+},4500);
+
+setTimeout(()=>{
+speechSynthesis.speak(msg4);
+},6500);
+
+setTimeout(()=>{
+speechSynthesis.speak(msg5);
+},8500);
+
+}else{
+
+failCount++;
+
+document.getElementById("result").innerHTML =
+"<span style='color:red'>認証失敗</span>";
+
+document.getElementById("fail").innerHTML =
+"失敗回数：" + failCount + " / 3";
+
+if(failCount >= 3){
+
+document.getElementById("result").innerHTML =
+"<span style='color:red'>⚠ 不正アクセス検知 ⚠</span>";
+
+let alertVoice =
+new SpeechSynthesisUtterance("不正アクセスを検知しました");
+alertVoice.lang = "ja-JP";
+
+speechSynthesis.speak(alertVoice);
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
