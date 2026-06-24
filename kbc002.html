@@ -66,7 +66,7 @@ box-shadow:0 0 20px red;
 
 #result{
 margin-top:40px;
-font-size:36px;
+font-size:34px;
 font-weight:bold;
 background:rgba(0,0,0,0.7);
 padding:25px;
@@ -90,6 +90,12 @@ font-size:20px;
 @keyframes dangerFlash{
 0%{filter:none;}
 50%{filter:brightness(2) sepia(1) hue-rotate(-30deg);}
+100%{filter:none;}
+}
+
+@keyframes successFlash{
+0%{filter:none;}
+50%{filter:brightness(1.8) hue-rotate(80deg);}
 100%{filter:none;}
 }
 </style>
@@ -132,6 +138,7 @@ speechSynthesis.cancel();
 let msg = new SpeechSynthesisUtterance(text);
 msg.lang = "ja-JP";
 msg.rate = 0.9;
+msg.pitch = 0.8;
 
 speechSynthesis.speak(msg);
 }
@@ -162,20 +169,26 @@ alarmInterval = null;
 
 speechSynthesis.cancel();
 
-document.body.style.animation = "none";
+document.body.style.animation = "successFlash 0.4s 6";
 
 document.getElementById("result").innerHTML =
 "<span style='color:#00ff00'>" +
-"管理者が変更されました<br><br>" +
-"■■ SYSTEM UPDATE ■■<br><br>" +
-"旧管理者：<br>" +
-"ミスターK<br><br>" +
-"新管理者：<br>" +
-"さな<br><br>" +
-"変更完了" +
+"管理者コードを確認。<br>" +
+"認証成功<br><br>" +
+"ミスターKの命令を解除します。<br><br>" +
+"管理者を変更します。<br>" +
+"新管理者を登録します。<br><br>" +
+"管理者登録完了<br><br>" +
+"新しい管理者は<br>" +
+"さな、たいしん<br><br>" +
+"ミスターK追跡モード発動<br><br>" +
+"ミスターKを捕まえます。<br><br>" +
+"確保実行します。" +
 "</span>";
 
-speak("管理者が変更されました");
+speak(
+"管理者コードを確認。認証成功。ミスターKの命令を解除します。管理者を変更します。新管理者を登録します。管理者登録完了。新しい管理者は、さな、たいしん。ミスターK追跡モード発動。ミスターKを捕まえます。確保実行します。"
+);
 
 }else{
 
