@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 
 <meta charset="UTF-8">
@@ -12,6 +13,7 @@
 body{
 
 background:#000;
+
 color:white;
 
 font-family:Arial,sans-serif;
@@ -36,17 +38,17 @@ padding:30px;
 
 background:#050505;
 
-box-shadow:0 0 30px red;
+box-shadow:0 0 30px rgba(255,0,0,.8);
 
 }
 
 .logo{
 
-font-size:42px;
+font-size:48px;
 
 font-weight:bold;
 
-letter-spacing:6px;
+letter-spacing:8px;
 
 margin-bottom:10px;
 
@@ -56,13 +58,13 @@ margin-bottom:10px;
 
 display:inline-block;
 
-padding:8px 20px;
+padding:10px 25px;
 
 border:2px solid red;
 
 color:red;
 
-font-size:24px;
+font-size:28px;
 
 font-weight:bold;
 
@@ -76,7 +78,7 @@ margin-bottom:25px;
 
 color:#ff3333;
 
-font-size:20px;
+font-size:24px;
 
 margin-bottom:40px;
 
@@ -84,19 +86,35 @@ margin-bottom:40px;
 
 .card{
 
-margin-bottom:50px;
+margin-bottom:60px;
 
 }
 
 .title{
 
-font-size:28px;
+font-size:32px;
 
-margin-bottom:20px;
+line-height:1.7;
+
+padding-bottom:20px;
 
 border-bottom:1px solid #666;
 
-padding-bottom:10px;
+margin-bottom:25px;
+
+}
+
+.subtitle{
+
+display:block;
+
+font-size:40px;
+
+font-weight:bold;
+
+margin-top:10px;
+
+letter-spacing:2px;
 
 }
 
@@ -108,7 +126,7 @@ max-width:800px;
 
 border:2px solid white;
 
-box-shadow:0 0 15px rgba(255,0,0,.5);
+box-shadow:0 0 15px rgba(255,0,0,.6);
 
 }
 
@@ -119,6 +137,8 @@ margin-top:40px;
 font-size:14px;
 
 color:#888;
+
+letter-spacing:2px;
 
 }
 
@@ -153,9 +173,13 @@ TOP SECRET
 
 <div class="title">
 
-FILE-01
+FILE-01 KBC001
 
-KBC001 取扱説明書
+<span class="subtitle">
+
+取扱説明書
+
+</span>
 
 </div>
 
@@ -168,9 +192,13 @@ KBC001 取扱説明書
 
 <div class="title">
 
-FILE-02
+FILE-02 KBC18470211
 
-kbc18470211
+<span class="subtitle">
+
+特別指定項目
+
+</span>
 
 </div>
 
@@ -182,6 +210,8 @@ kbc18470211
 <div class="footer">
 
 KBC-SYS-002
+
+<br><br>
 
 AUTHORIZED PERSONNEL ONLY
 
